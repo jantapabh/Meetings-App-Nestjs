@@ -19,6 +19,7 @@ export class AppService {
     //employee 1 is CEO
     const ceo = this.employeeRepo.create({ name: 'Jan'});
     await this.employeeRepo.save(ceo);
+    
     // ceo.id
     const ceoContactInfo = this.contactInfoRepo.create({ 
       email: "jantapa@hotmail.com", 

@@ -12,7 +12,7 @@ import { Task } from './task.entity';
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: '../db',
-      entities: ['dist/src/../**/*.entity.{js, ts}'],
+      entities: ['dist/**/*.entity.{js, ts}'],
       synchronize: true,
       logging: true,
     }),
