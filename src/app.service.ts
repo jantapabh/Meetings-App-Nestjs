@@ -19,19 +19,19 @@ export class AppService {
     //employee 1 is CEO
     const ceo = this.employeeRepo.create({ name: 'Jan'});
     await this.employeeRepo.save(ceo);
-    
+
     // ceo.id
     const ceoContactInfo = this.contactInfoRepo.create({ 
       email: "jantapa@hotmail.com", 
       // employeeId: ceo.id
     });
 
-    ceo.contactInfo.employee = ceo;
+    ceoContactInfo.employee = ceo;
     await this.contactInfoRepo.save(ceoContactInfo)
 
     //Employee 2 is Manager
     const manager = this.employeeRepo.create({
-      name: 'But',
+      name: 'Butttttssss',
       manager: ceo,
     });
 
@@ -53,6 +53,22 @@ export class AppService {
     manager.meetings = [meeting1];
 
     await this.employeeRepo.save(manager)
+  }
+
+  getEmployeeById(id: number){
+    // return this.employeeRepo.findOne(id, {
+    //   relations: ['manager', 'directReports', 'tasks', 'contactInfo', 'meetings']
+    // })
+    return this.employeeRepo.createQueryBuilder('employee')
+    .leftJoinAndSelect('employee.directReports', 'directReports')
+    .leftJoinAndSelect('employee.meetings', 'meetings')
+    .leftJoinAndSelect('employee.tasks', 'tasks')
+    .where('employee.id = :employeeId',{ employeeId: id})
+    .getOne();
+  }
+
+  deleteEmployee(id: number){
+    return this.employeeRepo.delete(id);
   }
 
   getHello(): string {

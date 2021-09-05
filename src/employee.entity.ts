@@ -24,7 +24,7 @@ export class Employee {
     contactInfo: ContactInfo;
 
     //one to many
-    @OneToMany(() => Task, (task) => task.employee)
+    @OneToMany(() => Task, (task) => task.employee, { eager: true})
     tasks: Task[];
 
     //Meeting and Employee

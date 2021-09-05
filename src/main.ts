@@ -4,8 +4,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.setGlobalPrefix('api');
-
+  app.setGlobalPrefix('');
   const option = new DocumentBuilder()
   .setTitle('Product API')
   .setDescription('Product API')
